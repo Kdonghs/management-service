@@ -3,12 +3,15 @@ package com.stock.managementservice.domain;
 import com.stock.managementservice.entity.BaseTimeEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "snsinfo")
+@EntityListeners(AuditingEntityListener.class)
 public class SNSInfo extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

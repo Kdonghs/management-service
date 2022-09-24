@@ -2,6 +2,7 @@ package com.stock.managementservice.domain;
 
 import com.stock.managementservice.entity.BaseTimeEntity;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "member")
+@EntityListeners(AuditingEntityListener.class)
 public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

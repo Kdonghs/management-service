@@ -59,18 +59,14 @@ public class loginController {
     public String createAccount(Member member){
         member.setRoleType(RoleType.USER);
 
-        if (!memberService.emailMember(member.getEmail()).isEmpty()){
+        if (memberService.emailMember(member.getEmail()).isEmpty()){
+            loginService.EncodingPassword(member);
+        }else {
             Member flag = memberService.emailMember(member.getEmail()).get();
-
-            if (!flag.getUsername().equals(member.getUsername())){
-                loginService.EncodingPassword(member);
-            }
 
             flag.update(member.getPassword(),member.getAge(),member.getUsername());
 
             loginService.EncodingPassword(flag);
-        }else {
-            loginService.EncodingPassword(member);
         }
 
 
