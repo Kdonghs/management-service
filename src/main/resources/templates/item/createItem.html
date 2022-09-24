@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function itemCheck(){
+            var i = document.info
+
+            if (i.name.value ==""){
+                alert("상품명을 입력하세요")
+                i.name.focus()
+                return false
+            }
+            if (i.price.value ==""){
+                alert("가격을 입력하세요")
+                i.price.focus()
+                return false
+            }
+            if (i.volume.value ==""){
+                alert("수량을 입력하세요")
+                i.volume.focus()
+                return false
+            }
+
+            i.submit()
+        }
+    </script>
+</head>
+<body>
+<h2 style="display: inline">상품추가</h2>
+<button class="btn btn-primary" onclick="location.href='/'" style="float:right">홈</button>
+<hr>
+<form name="createItem" method="post" onsubmit="return itemCheck()"  action="/item/create">
+    <table>
+        <tr>
+            <td>이름: </td>
+            <td><input type="text" name="name" min="2"></td>
+        </tr>
+        <tr>
+            <td>가격: </td>
+            <td><input type="text" name="price"min="1"></td>
+        </tr>
+        <tr>
+            <td>수량: </td>
+            <td><input type="text" name="volume" min="1"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right"><button type="submit">확인</button> <button type="reset">초기화</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
