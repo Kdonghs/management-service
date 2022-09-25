@@ -3,12 +3,12 @@ package com.stock.managementservice.controller;
 import com.stock.managementservice.domain.Member;
 import com.stock.managementservice.service.CustomOAuth2Service;
 import com.stock.managementservice.utill.JsonReader;
+import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,10 +23,23 @@ public class stockController {
     public String searchStock(@RequestParam String search, Authentication authentication, Model model){
         Member member = customOAuth2Service.authenticationMember(authentication);
         model.addAttribute("member",member);
+        String code = "stock/"+search + "/quote";
 
-        JSONObject stock = jsonReader.stockRead(search);
-        model.addAttribute("stock",stock.get("quote"));
+        JSONObject stock = jsonReader.stockObjectRead(code);
+        model.addAttribute("stock",stock);
 
-        return "stock/tables";
+        return "stock/searchTable";
+    }
+
+    @RequestMapping("/all")
+    public String allStock(Authentication authentication, Model model){
+        Member member = customOAuth2Service.authenticationMember(authentication);
+        model.addAttribute("member",member);
+        String code = "ref-data/symbols";
+
+        JSONArray stock = jsonReader.stockArrayRead(code);
+        model.addAttribute("stock",stock);
+
+        return "stock/allTables";
     }
 }
