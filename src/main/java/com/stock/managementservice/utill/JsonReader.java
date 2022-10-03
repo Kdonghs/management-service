@@ -11,20 +11,28 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 public class JsonReader {
-    final String IEXtoken = "pk_64cdce253bee495fa66866eecf1928f6";
+
+    final String korToken = "AI4sP7yimuGTh5b6bfWubhdv7Roc8UF4Uu2h52P5Khbkij2tMlroPBR1Di%2BcgmEZn0M9QLD3aOltxhUrCt2aWQ%3D%3D";
 
     public JSONObject stockObjectRead(String code){
         try {
             BufferedReader bf;
-            URL request = new URL("https://cloud.iexapis.com/stable/"+code+"?token="+IEXtoken);
+            URL request = new URL("http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?" +
+                    "numOfRows=1&pageNo=1&resultType=json&"
+                    +code+"&serviceKey="+korToken);
             bf = new BufferedReader(new InputStreamReader(request.openStream(), "UTF-8"));
             String  result = bf.readLine();
 
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
-            System.out.println(jsonObject);
+            JSONObject a = (JSONObject)jsonObject.get("response");
+            JSONObject b = (JSONObject)a.get("body");
+            JSONObject c = (JSONObject)b.get("items");
+            JSONArray Arr = (JSONArray)c.get("item");
+            System.out.println((JSONObject) Arr.get(0));
 
-            return jsonObject;
+
+            return (JSONObject) Arr.get(0);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -33,7 +41,7 @@ public class JsonReader {
     public JSONArray stockArrayRead(String code){
         try {
             BufferedReader bf;
-            URL request = new URL("https://cloud.iexapis.com/stable/"+code+"?token="+IEXtoken);
+            URL request = new URL("https://cloud.iexapis.com/stable/"+code+"?token="+korToken);
             bf = new BufferedReader(new InputStreamReader(request.openStream(), "UTF-8"));
             String  result = bf.readLine();
 

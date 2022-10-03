@@ -36,6 +36,7 @@ public class ProfileController {
     }
 
     @PostMapping ("/editProfile.do")
+    @ResponseBody
     public String editProfileDo(@RequestParam(value = "newPass",defaultValue = "") String newPass,
                                 Authentication authentication,Member member, Model model){
 
