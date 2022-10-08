@@ -36,12 +36,12 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
-                <!-- Page Heading -->
+                <!-- Page Heading
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                </div>
+                </div>-->
 
                 <!-- Content Row -->
                 <div class="row">
@@ -50,16 +50,27 @@
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                        {
+                                            "symbol": "KRX:KOSPI",
+                                            "width": "100%",
+                                            "height": "100%",
+                                            "locale": "en",
+                                            "dateRange": "12M",
+                                            "colorTheme": "light",
+                                            "trendLineColor": "rgba(41, 98, 255, 1)",
+                                            "underLineColor": "rgba(41, 98, 255, 0.3)",
+                                            "underLineBottomColor": "rgba(41, 98, 255, 0)",
+                                            "isTransparent": false,
+                                            "autosize": true,
+                                            "largeChartUrl": ""
+                                        }
+                                    </script>
                                 </div>
+                                <!-- TradingView Widget END -->
                             </div>
                         </div>
                     </div>
@@ -68,16 +79,27 @@
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-success shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Earnings (Annual)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                        {
+                                            "symbol": "KRX:KOSDAQ",
+                                            "width": "100%",
+                                            "height": "100%",
+                                            "locale": "en",
+                                            "dateRange": "12M",
+                                            "colorTheme": "light",
+                                            "trendLineColor": "rgba(41, 98, 255, 1)",
+                                            "underLineColor": "rgba(41, 98, 255, 0.3)",
+                                            "underLineBottomColor": "rgba(41, 98, 255, 0)",
+                                            "isTransparent": false,
+                                            "autosize": true,
+                                            "largeChartUrl": ""
+                                        }
+                                    </script>
                                 </div>
+                                <!-- TradingView Widget END -->
                             </div>
                         </div>
                     </div>
@@ -86,27 +108,27 @@
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-info shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                        </div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="progress progress-sm mr-2">
-                                                    <div class="progress-bar bg-info" role="progressbar"
-                                                         style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                         aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                        {
+                                            "symbol": "SKILLING:NASDAQ",
+                                            "width": "100%",
+                                            "height": "100%",
+                                            "locale": "en",
+                                            "dateRange": "12M",
+                                            "colorTheme": "light",
+                                            "trendLineColor": "rgba(41, 98, 255, 1)",
+                                            "underLineColor": "rgba(41, 98, 255, 0.3)",
+                                            "underLineBottomColor": "rgba(41, 98, 255, 0)",
+                                            "isTransparent": false,
+                                            "autosize": true,
+                                            "largeChartUrl": ""
+                                        }
+                                    </script>
                                 </div>
+                                <!-- TradingView Widget END -->
                             </div>
                         </div>
                     </div>
@@ -115,38 +137,49 @@
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2">
                             <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            Pending Requests</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                    </div>
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                        {
+                                            "symbol": "BLACKBULL:SPX500",
+                                            "width": "100%",
+                                            "height": "100%",
+                                            "locale": "en",
+                                            "dateRange": "12M",
+                                            "colorTheme": "light",
+                                            "trendLineColor": "rgba(41, 98, 255, 1)",
+                                            "underLineColor": "rgba(41, 98, 255, 0.3)",
+                                            "underLineBottomColor": "rgba(41, 98, 255, 0)",
+                                            "isTransparent": false,
+                                            "autosize": true,
+                                            "largeChartUrl": ""
+                                        }
+                                    </script>
                                 </div>
+                                <!-- TradingView Widget END -->
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- Content Row -->
 
                 <div class="row">
 
                     <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
+                    <div class="col-xl-12 col-lg-7" >
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <!-- Card Header - Dropdown
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;fade-in"
                                          aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">Dropdown Header:</div>
                                         <a class="dropdown-item" href="#">Action</a>
@@ -155,29 +188,166 @@
                                         <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <!-- Card Body -->
                             <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
+                                <!-- TradingView Widget BEGIN -->
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+                                        {
+                                            "width": "100%",
+                                            "height": 450,
+                                            "symbolsGroups": [
+                                            {
+                                                "name": "Indices",
+                                                "originalName": "Indices",
+                                                "symbols": [
+                                                    {
+                                                        "name": "FOREXCOM:SPXUSD",
+                                                        "displayName": "S&P 500"
+                                                    },
+                                                    {
+                                                        "name": "FOREXCOM:NSXUSD",
+                                                        "displayName": "US 100"
+                                                    },
+                                                    {
+                                                        "name": "FOREXCOM:DJI",
+                                                        "displayName": "Dow 30"
+                                                    },
+                                                    {
+                                                        "name": "KRX:KOSPI",
+                                                        "displayName": "Kospi"
+                                                    },
+                                                    {
+                                                        "name": "KRX:KOSDAQ",
+                                                        "displayName": "Kosdaq"
+                                                    },
+                                                    {
+                                                        "name": "INDEX:NKY",
+                                                        "displayName": "Nikkei225"
+                                                    },
+                                                    {
+                                                        "name": "HSI:HSI",
+                                                        "displayName": "Hang seng"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "Futures",
+                                                "originalName": "Futures",
+                                                "symbols": [
+                                                    {
+                                                        "name": "CME:6E1!",
+                                                        "displayName": "Euro"
+                                                    },
+                                                    {
+                                                        "name": "COMEX:GC1!",
+                                                        "displayName": "Gold"
+                                                    },
+                                                    {
+                                                        "name": "NYMEX:CL1!",
+                                                        "displayName": "Crude Oil"
+                                                    },
+                                                    {
+                                                        "name": "NYMEX:NG1!",
+                                                        "displayName": "Natural Gas"
+                                                    },
+                                                    {
+                                                        "name": "CBOT:ZC1!",
+                                                        "displayName": "Corn"
+                                                    },
+                                                    {
+                                                        "name": "BLACKBULL:WTI",
+                                                        "displayName": "WTI"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "Bonds",
+                                                "originalName": "Bonds",
+                                                "symbols": [
+                                                    {
+                                                        "name": "CME:GE1!",
+                                                        "displayName": "Eurodollar"
+                                                    },
+                                                    {
+                                                        "name": "CBOT:ZB1!",
+                                                        "displayName": "T-Bond"
+                                                    },
+                                                    {
+                                                        "name": "CBOT:UB1!",
+                                                        "displayName": "Ultra T-Bond"
+                                                    },
+                                                    {
+                                                        "name": "EUREX:FGBL1!",
+                                                        "displayName": "Euro Bund"
+                                                    },
+                                                    {
+                                                        "name": "EUREX:FBTP1!",
+                                                        "displayName": "Euro BTP"
+                                                    },
+                                                    {
+                                                        "name": "EUREX:FGBM1!",
+                                                        "displayName": "Euro BOBL"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "Forex",
+                                                "originalName": "Forex",
+                                                "symbols": [
+                                                    {
+                                                        "name": "FX:EURUSD",
+                                                        "displayName": "EUR/USD"
+                                                    },
+                                                    {
+                                                        "name": "FX:GBPUSD",
+                                                        "displayName": "GBP/USD"
+                                                    },
+                                                    {
+                                                        "name": "FX:USDJPY",
+                                                        "displayName": "USD/JPY"
+                                                    },
+                                                    {
+                                                        "name": "FX:USDCHF",
+                                                        "displayName": "USD/CHF"
+                                                    },
+                                                    {
+                                                        "name": "FX:AUDUSD",
+                                                        "displayName": "AUD/USD"
+                                                    },
+                                                    {
+                                                        "name": "FX:USDCAD",
+                                                        "displayName": "USD/CAD"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                            "showSymbolLogo": true,
+                                            "colorTheme": "light",
+                                            "isTransparent": false,
+                                            "locale": "kr"
+                                        }
+                                    </script>
                                 </div>
+                                <!-- TradingView Widget END -->
                             </div>
                         </div>
                     </div>
 
                     <!-- Pie Chart -->
-                    <div class="col-xl-4 col-lg-5">
+                    <!--<div class="col-xl-4 col-lg-5">
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            &lt;!&ndash; Card Header - Dropdown &ndash;&gt;
+                            &lt;!&ndash;<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated&#45;&#45;fade-in"
                                          aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">Dropdown Header:</div>
                                         <a class="dropdown-item" href="#">Action</a>
@@ -186,27 +356,14 @@
                                         <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Card Body -->
+                            </div>&ndash;&gt;
+                            &lt;!&ndash; Card Body &ndash;&gt;
                             <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                    <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                    <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <!-- Content Row -->
                 <div class="row">
