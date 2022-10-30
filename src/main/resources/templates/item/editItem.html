@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 수정</title>
+</head>
+<body>
+<h2 style="display: inline">상품추가</h2>
+<button class="btn btn-primary" onclick="location.href='/'" style="float:right">홈</button>
+<hr>
+<form name="deleteItem" id="deleteItem" method="post" action="/item/deleteItem.do">
+    <input name="itemID" th:value="${item.itemID}" type="hidden">
+</form>
+<form name="editItem" id="editItem" method="post" action="/item/editItem.do">
+    <input name="itemID" th:value="${item.itemID}" type="hidden">
+    <table>
+        <tr>
+            <th>이름:</th>
+            <td><input name="name" th:value="${item.name}" min="2"></td>
+        </tr>
+        <tr>
+            <th>가격:</th>
+            <td><input name="price" th:value="${item.price}" min="1"></td>
+        </tr>
+        <tr>
+            <th>수량:</th>
+            <td><input name="volume" th:value="${item.volume}" min="1"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td align="right">
+                <button type="submit" form="editItem">수정</button>
+                <button onclick="history.back()">뒤로</button>
+                <button type="submit" form="deleteItem">삭제</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
