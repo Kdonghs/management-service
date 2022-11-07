@@ -1,5 +1,6 @@
 package com.stock.managementservice.controller;
 
+import com.google.gson.Gson;
 import com.stock.managementservice.domain.Member;
 import com.stock.managementservice.service.CustomOAuth2Service;
 import com.stock.managementservice.utill.JsonReader;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/stock")
@@ -23,30 +28,41 @@ public class stockController {
     private CustomOAuth2Service customOAuth2Service;
     final JsonReader jsonReader = new JsonReader();
 
-    @RequestMapping("/search")
-    public String searchStock(@RequestParam String search, Authentication authentication, Model model) throws UnsupportedEncodingException {
-        Member member = customOAuth2Service.authenticationMember(authentication);
-        model.addAttribute("member",member);
-        String code = "itmsNm=" + URLEncoder.encode(search, "UTF-8");
+    /*@RequestMapping("/search")
+    public void searchStock(@RequestParam String keyword,
+                              @RequestParam String state,HttpServletResponse response) throws IOException {
 
-        JSONObject stock = jsonReader.stockObjectRead(code);
-        model.addAttribute("stock",stock);
+        JSONArray stock=null;
+        System.out.println(state);
 
-        return "stock/searchTable";
-    }
-    @RequestMapping("/search.do")
+        if (state.equals("us")){
+            System.out.println(keyword);
+            stock = jsonReader.usStockObjectRead(keyword);
+//            model.addAttribute("stock",stock);
+        }
+
+        if (state.equals("kor")){
+            String code = "likeItmsNm=" + URLEncoder.encode(keyword, "UTF-8");
+            stock = jsonReader.korStockObjectRead(code);
+//            model.addAttribute("stock",stock);
+        }
+
+        response.getWriter().print(stock);
+        *//*return "stock/searchTable";*//*
+    }*/
+    /*@RequestMapping("/search.do")
     public String searchStockRe(@RequestParam String search, Authentication authentication, Model model) throws UnsupportedEncodingException {
         Member member = customOAuth2Service.authenticationMember(authentication);
         model.addAttribute("member",member);
-        String code = "itmsNm=" + URLEncoder.encode(search, "UTF-8");
 
-        JSONObject stock = jsonReader.stockObjectRead(code);
+        String code = "itmsNm=" + URLEncoder.encode(search, "UTF-8");
+        JSONObject stock = jsonReader.korStockObjectRead(code);
         model.addAttribute("stock",stock);
 
         return "stock/searchTable";
-    }
+    }*/
 
-    @RequestMapping("/all")
+    /*@RequestMapping("/all")
     public String allStock(Authentication authentication, Model model){
         Member member = customOAuth2Service.authenticationMember(authentication);
         model.addAttribute("member",member);
@@ -56,5 +72,5 @@ public class stockController {
         model.addAttribute("stock",stock);
 
         return "stock/allTables";
-    }
+    }*/
 }

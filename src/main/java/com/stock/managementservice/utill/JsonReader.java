@@ -14,14 +14,14 @@ public class JsonReader {
 
     final String korToken = "AI4sP7yimuGTh5b6bfWubhdv7Roc8UF4Uu2h52P5Khbkij2tMlroPBR1Di%2BcgmEZn0M9QLD3aOltxhUrCt2aWQ%3D%3D";
 
-    public JSONObject stockObjectRead(String code){
+    public JSONArray korStockObjectRead(String code){
         try {
             BufferedReader bf;
             URL request = new URL("http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?" +
                     "numOfRows=1&pageNo=1&resultType=json&"
                     +code+"&serviceKey="+korToken);
             bf = new BufferedReader(new InputStreamReader(request.openStream(), "UTF-8"));
-            String  result = bf.readLine();
+            String result = bf.readLine();
 
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
@@ -29,16 +29,39 @@ public class JsonReader {
             JSONObject b = (JSONObject)a.get("body");
             JSONObject c = (JSONObject)b.get("items");
             JSONArray Arr = (JSONArray)c.get("item");
-            System.out.println((JSONObject) Arr.get(0));
+            if (Arr.isEmpty()){
+                return new JSONArray();
+            }
+            System.out.println(Arr);
 
-
-            return (JSONObject) Arr.get(0);
+            return Arr;
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return new JSONObject();
+        return new JSONArray();
     }
-    public JSONArray stockArrayRead(String code){
+
+    public JSONArray usStockObjectRead(String code){
+        try {
+            BufferedReader bf;
+            URL request = new URL("https://api.nasdaq.com/api/autocomplete/slookup/5?search="+code);
+            bf = new BufferedReader(new InputStreamReader(request.openStream()));
+            String result = bf.readLine();
+            System.out.println(request);
+            System.out.println(result);
+
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
+            JSONArray a = (JSONArray) jsonObject.get("data");
+            System.out.println(a);
+
+            return a;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return new JSONArray();
+    }
+    /*public JSONArray stockArrayRead(String code){
         try {
             BufferedReader bf;
             URL request = new URL("https://cloud.iexapis.com/stable/"+code+"?token="+korToken);
@@ -54,5 +77,5 @@ public class JsonReader {
         }
 
         return new JSONArray();
-    }
+    }*/
 }
