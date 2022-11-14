@@ -8,7 +8,7 @@
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         function searchFor() {
-            var keyword = $('#search').val();
+            var search = $('#search').val();
             var state = $('#state').val();
 
             if (state == 'kor') {
@@ -16,19 +16,26 @@
                     url: 'https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo',
                     type: 'get',
                     data: {
-                        likeItmsNm: keyword, numOfRows: 5, pageNo: 1, resultType: 'json',
+                        likeItmsNm: search, numOfRows: 5, pageNo: 1, resultType: 'json',
                         serviceKey: 'AI4sP7yimuGTh5b6bfWubhdv7Roc8UF4Uu2h52P5Khbkij2tMlroPBR1Di%2BcgmEZn0M9QLD3aOltxhUrCt2aWQ%3D%3D'
                     },
                     success: function (data) {
-                        var s = '';
-                        alert(data.response.body.items.item)
+                        var s = '<tr> <td style="width:18%">가격</td>' +
+                            '<td style="vertical-align : bottom; font-size:15px;">티커</td>' +
+                            '<td style="width:20%;vertical-align : middle; font-size:13px;">종목명</td></tr><hr/>';
+
                         $.each(data.response.body.items.item, function (index, stock) {
-                            alert(stock)
-                            s += '<tr> <td style="width:18%">' + index + '</td>';
-                            s += '<td style="vertical-align : bottom; font-size:15px;">' + stock.clpr + '</td>';
-                            s += '<td style="width:20%;vertical-align : middle; font-size:13px;">' + stock.itmsNm + '</td> </tr>';
+                            s += '<tr><a th:href = \'location.href=@{/stock/search(search =' + stock.clpr +', state = kor)}\'> <td style="width:18%">' + stock.clpr + '</td>';
+                            s += '<td style="vertical-align : bottom; font-size:15px;">' + stock.srtnCd + '</td>';
+                            s += '<td style="width:20%;vertical-align : middle; font-size:13px;">' + stock.itmsNm + '</td><a/> </tr>';
                             s += '<hr/>';
                         })
+
+                        if (data==null){
+
+                        }else {
+
+                        }
 
                         $("#selectView").html(s);
 
@@ -42,7 +49,7 @@
                     url: 'https://api.nasdaq.com/api/autocomplete/slookup/5',
                     type: 'get',
                     data: {
-                        search: keyword
+                        search: search
                     },
                     success: function (data) {
                         var s = '';
@@ -69,28 +76,6 @@
 </head>
 <body>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-    <!-- Sidebar Toggle (Topbar) -->
-    <!--<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle">
-        <i class="fa fa-bars"></i>
-    </button>-->
-
-    <!-- Topbar Search -->
-    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="/stock/search" >
-         <div class="input-group">
-             <select class="bg-light border-0 small" name="state" id="state">
-                 <option value="kor">kor</option>
-                 <option value="us">us</option>
-             </select>
-             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                    aria-label="Search" aria-describedby="basic-addon2" name="search" id="search">
-             <div class="input-group-append">
-                 <button class="btn btn-primary" type="submit">
-                     <i class="fas fa-search fa-sm"></i>
-                 </button>
-             </div>
-         </div>
-     </form>-->
 
     <li class="dropdown" style=" list-style: none;">
         <a class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"

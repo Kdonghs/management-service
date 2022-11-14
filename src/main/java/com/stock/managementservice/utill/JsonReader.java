@@ -14,7 +14,7 @@ public class JsonReader {
 
     final String korToken = "AI4sP7yimuGTh5b6bfWubhdv7Roc8UF4Uu2h52P5Khbkij2tMlroPBR1Di%2BcgmEZn0M9QLD3aOltxhUrCt2aWQ%3D%3D";
 
-    public JSONArray korStockObjectRead(String code){
+    public JSONObject korStockObjectRead(String code){
         try {
             BufferedReader bf;
             URL request = new URL("http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?" +
@@ -30,15 +30,15 @@ public class JsonReader {
             JSONObject c = (JSONObject)b.get("items");
             JSONArray Arr = (JSONArray)c.get("item");
             if (Arr.isEmpty()){
-                return new JSONArray();
+                return new JSONObject();
             }
             System.out.println(Arr);
 
-            return Arr;
+            return (JSONObject) Arr.get(0);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return new JSONArray();
+        return new JSONObject();
     }
 
     public JSONArray usStockObjectRead(String code){

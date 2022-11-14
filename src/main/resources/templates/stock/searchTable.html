@@ -51,23 +51,23 @@
 </head>
 
 <body id="page-top">
-<script>document.addEventListener("DOMContentLoaded",function() {setInterval("checkID()",1000);});</script>
+<!--<script>document.addEventListener("DOMContentLoaded",function() {setInterval("checkID()",1000);});</script>
 
-<!-- Page Wrapper -->
+&lt;!&ndash; Page Wrapper &ndash;&gt;
 <div id="wrapper">
     <nav th:include="/sidebar/sidenav.html"></nav>
 
-    <!-- Content Wrapper -->
+    &lt;!&ndash; Content Wrapper &ndash;&gt;
     <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
+        &lt;!&ndash; Main Content &ndash;&gt;
         <div id="content">
             <header th:include="/sidebar/header.html"></header>
-            <!-- Begin Page Content -->
+            &lt;!&ndash; Begin Page Content &ndash;&gt;
             <div class="container-fluid">
                 <input type="hidden" name="search"  th:value="${stock.itmsNm}">
 
-                <!-- Page Heading -->
+                &lt;!&ndash; Page Heading &ndash;&gt;
                 <h1 class="h3 mb-2 text-gray-800" th:text="${stock.itmsNm}"></h1>
                 <p class="mb-4"  th:text="${stock.isinCd}"></p>
                 <h2 style="display: inline" th:text="${stock.clpr}"></h2>
@@ -102,17 +102,56 @@
                     </div>
                 </div>
             </div>
-            <!-- /.container-fluid -->
+            &lt;!&ndash; /.container-fluid &ndash;&gt;
         </div>
-        <!-- End of Main Content -->
+        &lt;!&ndash; End of Main Content &ndash;&gt;
 
-        <!-- End of Footer -->
+        &lt;!&ndash; End of Footer &ndash;&gt;
         <footer th:include="/sidebar/footer.html"></footer>
     </div>
-    <!-- End of Content Wrapper -->
+    &lt;!&ndash; End of Content Wrapper &ndash;&gt;
 
 </div>
-<!-- End of Page Wrapper -->
+&lt;!&ndash; End of Page Wrapper &ndash;&gt;-->
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Price Today</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
+        {
+            "symbol": "NASDAQ:AAPL",
+            "width": 1000,
+            "locale": "en",
+            "colorTheme": "light",
+            "isTransparent": false
+        }
+    </script>
+</div>
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div id="tradingview_0a4ca"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        new TradingView.widget(
+            {
+                "autosize": true,
+                "symbol": "NASDAQ:AAPL",
+                "interval": "D",
+                "timezone": "Etc/UTC",
+                "theme": "light",
+                "style": "1",
+                "locale": "en",
+                "toolbar_bg": "#f1f3f6",
+                "enable_publishing": false,
+                "allow_symbol_change": true,
+                "container_id": "tradingview_0a4ca"
+            }
+        );
+    </script>
+</div>
 
 <!-- Bootstrap core JavaScript-->
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>

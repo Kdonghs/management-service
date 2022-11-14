@@ -27,6 +27,7 @@ out/
 !**/src/test/**/out/
 application.properties
 application-oauth.properties
+src/main/java/com/stock/managementservice/utill/serviceKey.java
 
 ### NetBeans ###
 /nbproject/private/

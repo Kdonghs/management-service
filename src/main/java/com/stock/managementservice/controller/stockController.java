@@ -28,30 +28,29 @@ public class stockController {
     private CustomOAuth2Service customOAuth2Service;
     final JsonReader jsonReader = new JsonReader();
 
-    /*@RequestMapping("/search")
-    public void searchStock(@RequestParam String keyword,
-                              @RequestParam String state,HttpServletResponse response) throws IOException {
+    @RequestMapping("/search")
+    public String searchStock(@RequestParam String search,@RequestParam String state,
+                              Authentication authentication, Model model) throws UnsupportedEncodingException {
+        Member member = customOAuth2Service.authenticationMember(authentication);
+        model.addAttribute("member",member);
 
-        JSONArray stock=null;
+        System.out.println(search);
         System.out.println(state);
 
         if (state.equals("us")){
-            System.out.println(keyword);
-            stock = jsonReader.usStockObjectRead(keyword);
-//            model.addAttribute("stock",stock);
+
         }
 
-        if (state.equals("kor")){
-            String code = "likeItmsNm=" + URLEncoder.encode(keyword, "UTF-8");
-            stock = jsonReader.korStockObjectRead(code);
-//            model.addAttribute("stock",stock);
+        else if (state.equals("kor")){
+            model.addAttribute("ticker", search);
         }
 
-        response.getWriter().print(stock);
-        *//*return "stock/searchTable";*//*
-    }*/
-    /*@RequestMapping("/search.do")
-    public String searchStockRe(@RequestParam String search, Authentication authentication, Model model) throws UnsupportedEncodingException {
+        return "stock/searchTable";
+       /* return "redirect:/";*/
+    }
+   /* @RequestMapping("/search.do")
+    public String searchStockRe(@RequestParam String search,@RequestParam String state,
+                                Authentication authentication, Model model) throws UnsupportedEncodingException {
         Member member = customOAuth2Service.authenticationMember(authentication);
         model.addAttribute("member",member);
 
