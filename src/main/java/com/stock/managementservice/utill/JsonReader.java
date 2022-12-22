@@ -12,14 +12,15 @@ import java.net.URL;
 
 public class JsonReader {
 
-    final String korToken = "AI4sP7yimuGTh5b6bfWubhdv7Roc8UF4Uu2h52P5Khbkij2tMlroPBR1Di%2BcgmEZn0M9QLD3aOltxhUrCt2aWQ%3D%3D";
+    final String korToken = new serviceKey().korServiceKey;
+    final String usToken = new serviceKey().usServiceKey;
 
-    public JSONObject korStockObjectRead(String code){
+    public JSONObject korStockObjectRead(String ticker,int count, int no){
         try {
             BufferedReader bf;
             URL request = new URL("http://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?" +
-                    "numOfRows=1&pageNo=1&resultType=json&"
-                    +code+"&serviceKey="+korToken);
+                    "numOfRows="+count+"&pageNo="+no+"&resultType=json&likeItmsNm="
+                    +ticker+"&serviceKey="+korToken);
             bf = new BufferedReader(new InputStreamReader(request.openStream(), "UTF-8"));
             String result = bf.readLine();
 
@@ -41,10 +42,10 @@ public class JsonReader {
         return new JSONObject();
     }
 
-    public JSONArray usStockObjectRead(String code){
+    public JSONObject usStockObjectRead(String code){
         try {
             BufferedReader bf;
-            URL request = new URL("https://api.nasdaq.com/api/autocomplete/slookup/5?search="+code);
+            URL request = new URL("https://api.nasdaq.com/api/autocomplete/slookup/5?search="+code + "&key=" + usToken);
             bf = new BufferedReader(new InputStreamReader(request.openStream()));
             String result = bf.readLine();
             System.out.println(request);
@@ -55,11 +56,11 @@ public class JsonReader {
             JSONArray a = (JSONArray) jsonObject.get("data");
             System.out.println(a);
 
-            return a;
+            return (JSONObject)a.get(0);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return new JSONArray();
+        return new JSONObject();
     }
     /*public JSONArray stockArrayRead(String code){
         try {

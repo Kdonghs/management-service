@@ -1,6 +1,5 @@
 package com.stock.managementservice.controller;
 
-import com.google.gson.Gson;
 import com.stock.managementservice.domain.Member;
 import com.stock.managementservice.service.CustomOAuth2Service;
 import com.stock.managementservice.utill.JsonReader;
@@ -12,14 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/stock")
@@ -38,11 +32,11 @@ public class stockController {
         System.out.println(state);
 
         if (state.equals("us")){
-
-        }
-
-        else if (state.equals("kor")){
+//            JSONArray json = jsonReader.usStockObjectRead(search);
             model.addAttribute("ticker", search);
+        }else if (state.equals("kor")){
+            JSONObject json = jsonReader.korStockObjectRead(URLEncoder.encode(search, "UTF-8"),1,1);
+            model.addAttribute("ticker", json);
         }
 
         return "stock/searchTable";
@@ -67,7 +61,7 @@ public class stockController {
         model.addAttribute("member",member);
         String code = "ref-data/symbols";
 
-        JSONArray stock = jsonReader.stockArrayRead(code);
+//        JSONArray stock = jsonReader.stockArrayRead(code);
         model.addAttribute("stock",stock);
 
         return "stock/allTables";
