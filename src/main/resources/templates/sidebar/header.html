@@ -5,7 +5,6 @@
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
     <title>header</title>
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -75,42 +74,42 @@
 
         }
     </script>-->
-<!--    https://madinthe90.tistory.com/14-->
+    <!--    https://madinthe90.tistory.com/14-->
     <script>
-        var search = $('#search').val();
         var state = $('#state').val();
-        $('#selectView').autocomplete({
-            source : function(request, response) { //source: 입력시 보일 목록
+        $('#search').autocomplete({
+            source: function (request, response) { //source: 입력시 보일 목록
                 $.ajax({
                     url: 'https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo',
                     type: 'get',
                     data: {// 검색 키워드
-                        likeItmsNm: search, numOfRows: 5, pageNo: 1, resultType: 'json',
+                        numOfRows: 5, pageNo: 1, resultType: 'json',
                         serviceKey: 'AI4sP7yimuGTh5b6bfWubhdv7Roc8UF4Uu2h52P5Khbkij2tMlroPBR1Di%2BcgmEZn0M9QLD3aOltxhUrCt2aWQ%3D%3D'
                     },
                     success: function (data) {	// 성공
+                        alert("1")
                         response(
-                            $.map(data.resultList, function(item) {
+                            $.map(data.response.body.items.item, function (item) {
                                 return {
-                                    label : item.SEARCH_WORD    	// 목록에 표시되는 값
-                                    , value : item.SEARCH_WORD 		// 선택 시 input창에 표시되는 값
-                                    , idx : item.SEQ // index
+                                    label: item.itmsNm    	// 목록에 표시되는 값
+                                    , value: item.isinCd 		// 선택 시 input창에 표시되는 값
+                                    , idx: item.isinCd // index
                                 };
                             })
                         );    //response
                     }
-                    ,error : function(){ //실패
+                    , error: function () { //실패
                         alert("오류가 발생했습니다.");
                     }
                 });
             }
-            ,focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌
+            , focus: function (event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌
                 return false;
             }
-            ,minLength: 1// 최소 글자수
-            ,autoFocus : true // true == 첫 번째 항목에 자동으로 초점이 맞춰짐
-            ,delay: 100	//autocomplete 딜레이 시간(ms)
-            ,select : function(evt, ui) {
+            , minLength: 1// 최소 글자수
+            , autoFocus: true // true == 첫 번째 항목에 자동으로 초점이 맞춰짐
+            , delay: 100	//autocomplete 딜레이 시간(ms)
+            , select: function (evt, ui) {
                 // 아이템 선택시 실행 ui.item 이 선택된 항목을 나타내는 객체, lavel/value/idx를 가짐
                 console.log(ui.item.label);
                 console.log(ui.item.idx);
@@ -119,38 +118,23 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-    <li class="dropdown" style=" list-style: none;">
-        <form name="search" action="/stock/search" method="get" th:action="@{/stock/search}">
-        <a class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" data-toggle="dropdown">
-            <div class="input-group">
-                <select class="bg-light border-0 small" name="state" id="state">
-                    <option value="kor">kor</option>
-                    <option value="us">us</option>
-                </select>
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                       aria-label="Search" aria-describedby="basic-addon2" name="search" id="search"
-                       onkeyup="searchFor()">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
-                </div>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <form name="search" action="/stock/search" method="get" th:action="@{/stock/search}">
+        <div class="input-group">
+            <select class="bg-light border-0 small" name="state" id="state">
+                <option value="kor">kor</option>
+                <option value="us">us</option>
+            </select>
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                   aria-label="Search" aria-describedby="basic-addon2" name="search" id="search">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
             </div>
-        </a>
-        </form>
-        <ul class="dropdown-menu">
-            <li class="dropdown" id="aaa">
-                <div style="width:550px;height:400px;  overflow:auto" class="bg-light">
-                    <div id="selectView" class="bg-light">
-                        <table class="table table-hover bg-light">
-                        </table>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </li>
+        </div>
+    </form>
 
 
     <!-- Topbar Navbar -->
