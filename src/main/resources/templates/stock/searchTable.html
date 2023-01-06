@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -22,18 +22,37 @@
 
     <!-- Custom styles for this page -->
     <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+    <style>
+        body{
+            -ms-overflow-style: none;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script>
+        function checkStar(){
+
+        }
+    </script>
 
 </head>
 <input type="hidden" th:value="'KRX:' + ${ticker.srtnCd}" name="ticker" id="ticker" value="KRX:005930">
 <body id="page-top">
 <div id="wrapper">
     <nav th:include="/sidebar/sidenav.html"/>
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
             <header th:include="/sidebar/header.html"></header>
+            <div class="btn" style="float: right; margin-top: 0px;padding-top: 0px">
+                <a style="font-weight: bold">내 종목 추가</a>
+                <button type="button" id="star" name="star" style="background: none; border: none;" >
+                    <img th:src="@{/img/star.png}"><img th:src="@{/img/checkStar.png}">
+                </button>
+            </div>
 
             <!-- TradingView Widget BEGIN -->
             <div class="tradingview-widget-container" id="trading-view-symbol">
@@ -54,11 +73,35 @@
                 </script>
             </div>
             <!-- TradingView Widget END -->
+            <div class="m-2 p-2">
+<!--                get margin-->
+            </div>
 
             <!-- TradingView Widget BEGIN -->
-            <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container" id="trading-view-chart">
                 <div id="tradingview_d28c8"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script>
+
+                    document.getElementById("trading-view-chart").innerHTML = "";
+                    var script = document.createElement("script");
+                    var ticker  = $('#ticker').val()
+                    script.text = ' new Tradingview.widget({\n' +
+                        '                            "width": "100%",\n' +
+                        '                            "height": 500,\n' +
+                        '                            "symbol": "' + ticker + '",' +
+                        '                            "interval": "D",\n' +
+                        '                            "timezone": "Etc/UTC",\n' +
+                        '                            "theme": "light",\n' +
+                        '                            "style": "1",\n' +
+                        '                            "locale": "kr",\n' +
+                        '                            "toolbar_bg": "#f1f3f6",\n' +
+                        '                            "enable_publishing": false,\n' +
+                        '                            "allow_symbol_change": false,\n' +
+                        '                            "container_id": "tradingview_d28c8"\n' +
+                        '                        });'
+                    document.getElementById("trading-view-chart").appendChild(script);
+                </script>
                 <script type="text/javascript">
                     new TradingView.widget(
                         {
@@ -99,18 +142,6 @@
                         '                    }'
                     document.getElementById("trading-view-describe").appendChild(script);
                 </script>
-                <!--<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-financials.js" async>
-                    {
-                        "colorTheme": "light",
-                        "isTransparent": false,
-                        "largeChartUrl": "",
-                        "displayMode": "adaptive",
-                        "width": "100%",
-                        "height": "100%",
-                        "symbol": "KRX:005930",
-                        "locale": "kr"
-                    }
-                </script>-->
             </div>
             <!-- TradingView Widget END -->
             <footer th:include="/sidebar/footer.html"></footer>
