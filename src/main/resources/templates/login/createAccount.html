@@ -117,12 +117,12 @@
             var i = document.info
 
             if (i.email.value == "") {
-                alert("아이디를 입력하세요")
+                alert("이메일을 입력하세요")
                 i.email.focus()
                 return false
             }
 
-            var email = $('#username').val();
+            var email = $('#email').val();
             var header = $("meta[name='_csrf_header']").attr('content');
             var token = $("meta[name='_csrf']").attr('content');
 
@@ -136,7 +136,8 @@
                     jqXHR.setRequestHeader(header, token);
                 },
                 success: function (result) {
-                    alert("사용 가능한 이메일 입니다")
+                    // alert("사용 가능한 이메일 입니다")
+                    alert(result)
                     i.valiCheckEmail.value = "true"
                 }, error: function (error) {
                     alert("이미 사용중인 이메일 입니다")

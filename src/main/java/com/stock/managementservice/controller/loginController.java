@@ -88,10 +88,10 @@ public class loginController {
     @ResponseBody
     public ResponseEntity<?> checkEmailDuplication(@RequestParam(value = "email") String email) throws BadRequestException {
 
-        if (memberService.existsByMemberUsername(email) == true) {
-            throw new BadRequestException("이미 사용중인 아이디 입니다.");
+        if (memberService.existsByMemberEmail(email) == true) {
+            throw new BadRequestException("이미 사용중인 이메일 입니다.");
         } else {
-            return ResponseEntity.ok("사용 가능한 아이디 입니다.");
+            return ResponseEntity.ok("사용 가능한 이메일 입니다.");
         }
     }
 
