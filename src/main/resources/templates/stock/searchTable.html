@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
 
     <title>stock info</title>
 
@@ -33,7 +35,29 @@
     </style>
     <script>
         function checkStar(){
-
+            var i = document.info
+            var ticker = $('#ticker').val()
+            $.ajax({
+                url:'/stock/stars',
+                type: 'post',
+                data:{ticker: ticker},
+                beforeSend: function (jqXHR, settings) {
+                    var header = $("meta[name='_csrf_header']").attr("content");
+                    var token = $("meta[name='_csrf']").attr("content");
+                    jqXHR.setRequestHeader(header, token);
+                },
+                success: function (result) {
+                    if (result == 'add'){
+                        alert("내 종목에 추가하였습니다.")
+                        i.myStock.value = "true"
+                    }else {
+                        alert("내 종목에 제거하였습니다.")
+                        i.myStock.value = "false"
+                    }
+                }, error: function (error) {
+                    alert("오류")
+                }
+            })
         }
     </script>
 
@@ -49,8 +73,9 @@
             <header th:include="/sidebar/header.html"></header>
             <div class="btn" style="float: right; margin-top: 0px;padding-top: 0px">
                 <a style="font-weight: bold">내 종목 추가</a>
-                <button type="button" id="star" name="star" style="background: none; border: none;" >
-                    <img th:src="@{/img/star.png}"><img th:src="@{/img/checkStar.png}">
+                <input type="hidden" name="myStock" value="false">
+                <button type="button" id="star" name="star" style="background: none; border: none;" onclick="checkStar()" >
+                    <img id="checkStar" th:src="@{/img/star.png}">
                 </button>
             </div>
 

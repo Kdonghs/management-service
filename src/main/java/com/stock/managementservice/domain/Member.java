@@ -40,6 +40,12 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "member")
     private List<SNSInfo> snsInfoList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<MyStock> myStocks = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<MyStars> myStars = new ArrayList<>();
+
     @Builder
     public Member(String username, String password, String name, Integer age, String email, RoleType roleType) {
         this.username = username;
