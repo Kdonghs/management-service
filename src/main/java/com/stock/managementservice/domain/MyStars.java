@@ -14,6 +14,8 @@ import javax.persistence.*;
 public class MyStars {
     private String ticker;
 
+    private String name;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,8 +24,9 @@ public class MyStars {
     @JoinColumn(name = "member_id")
     private Member member;
 
-   public MyStars(String ticker, Member member){
+   public MyStars(String ticker,String name, Member member){
        this.ticker = ticker;
+       this.name = name;
        this.member = member;
    }
 }
