@@ -6,6 +6,7 @@ import com.stock.managementservice.repository.MyStarsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,8 +20,8 @@ public class MyStarsService {
         return myStarsRepository.existsMyStarsByTickerAndMember_Id(ticker,member.getId());
     }
 
-    public Boolean addStar(String ticker, Member member){
-        MyStars myStars = new MyStars(ticker,member);
+    public Boolean addStar(String ticker,String name, Member member){
+        MyStars myStars = new MyStars(ticker,name,member);
         try {
             myStarsRepository.save(myStars);
             return true;
@@ -37,5 +38,9 @@ public class MyStarsService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public List<MyStars> getAll(){
+        return myStarsRepository.findAll();
     }
 }

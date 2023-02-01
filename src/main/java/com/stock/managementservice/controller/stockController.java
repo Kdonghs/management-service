@@ -50,9 +50,10 @@ public class stockController {
         return "stock/searchTable";
        /* return "redirect:/";*/
     }
-    @RequestMapping("/stars")
+    @RequestMapping("/addStar")
     @ResponseBody
-    public ResponseEntity myStock(@RequestParam String ticker,Authentication authentication){
+    public ResponseEntity addmyStock(@RequestParam String ticker,@RequestParam String name,
+                                     Authentication authentication){
         Member member = customOAuth2Service.authenticationMember(authentication);
         System.out.println(myStars.checkStar(ticker,member));
         if (myStars.checkStar(ticker,member)){
@@ -60,10 +61,18 @@ public class stockController {
             return ResponseEntity.ok("remove");
 
         }else {
-            myStars.addStar(ticker,member);
+            myStars.addStar(ticker,name,member);
             return ResponseEntity.ok("add");
         }
 
+    }
+
+    @RequestMapping("/stars")
+    public String stars(Authentication authentication,Model model){
+        Member member = customOAuth2Service.authenticationMember(authentication);
+        model.addAttribute("member",member);
+        model.addAttribute("stars", myStars.getAll());
+        return "/stock/stars";
     }
    /* @RequestMapping("/search.do")
     public String searchStockRe(@RequestParam String search,@RequestParam String state,

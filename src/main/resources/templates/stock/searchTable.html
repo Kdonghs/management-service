@@ -37,10 +37,12 @@
         function checkStar(){
             var i = document.info
             var ticker = $('#ticker').val()
+            var name = $('#name').val()
             $.ajax({
-                url:'/stock/stars',
+                url:'/stock/addStar',
                 type: 'post',
-                data:{ticker: ticker},
+                data:{ticker: ticker,
+                        name:name},
                 beforeSend: function (jqXHR, settings) {
                     var header = $("meta[name='_csrf_header']").attr("content");
                     var token = $("meta[name='_csrf']").attr("content");
@@ -62,7 +64,8 @@
     </script>
 
 </head>
-<input type="hidden" th:value="'KRX:' + ${ticker.srtnCd}" name="ticker" id="ticker" value="KRX:005930">
+<input type="hidden" th:value="${ticker.srtnCd}" name="ticker" id="ticker" value="KRX:005930">
+<input type="hidden" th:value="${ticker.itmsNm}" name="ticker" id="name" value="삼성전자">
 <body id="page-top">
 <div id="wrapper">
     <nav th:include="/sidebar/sidenav.html"/>
@@ -75,7 +78,7 @@
                 <a style="font-weight: bold">내 종목 추가</a>
                 <input type="hidden" name="myStock" value="false">
                 <button type="button" id="star" name="star" style="background: none; border: none;" onclick="checkStar()" >
-                    <img id="checkStar" th:src="@{/img/star.png}">
+                    <img id="checkStar" th:src="@{/img/addStar.png}">
                 </button>
             </div>
 
