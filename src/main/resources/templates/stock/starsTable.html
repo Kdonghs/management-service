@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
 
     <title>관심 종목</title>
 
@@ -22,7 +24,34 @@
 
     <!-- Custom styles for this page -->
     <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
-
+    <script>
+        function checkStar(ticker,name){
+            var i = document.info
+            // var ticker = $('#ticker').val()
+            // var name = $('#name').val()
+            $.ajax({
+                url:'/stock/addStar',
+                type: 'post',
+                data:{ticker: ticker,
+                    name:name},
+                beforeSend: function (jqXHR, settings) {
+                    var header = $("meta[name='_csrf_header']").attr("content");
+                    var token = $("meta[name='_csrf']").attr("content");
+                    jqXHR.setRequestHeader(header, token);
+                },
+                success: function (result) {
+                    if (result == 'add'){
+                        alert("내 종목에 추가하였습니다.")
+                    }else {
+                        alert("내 종목에 제거하였습니다.")
+                        location.reload(true);
+                    }
+                }, error: function (error) {
+                    alert("오류")
+                }
+            })
+        }
+    </script>
 </head>
 
 <body id="page-top">
@@ -56,13 +85,20 @@
                                     <th>no</th>
                                     <th>ticker</th>
                                     <th>name</th>
+                                    <th>stars</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="star,i : ${stars}">
-                                    <td th:text="${i.index+1}"></td>
+                                    <td th:text="${i.index+1}">
+                                    </td>
                                     <td><a th:text="${star.ticker}" th:href="@{/stock/search(search=${star.name},state=kor)}" ></a></td>
                                     <td th:text="${star.name}"></td>
+                                    <td>
+                                        <button type="button" id="star" name="star" style="background: none; border: none;" th:onclick="checkStar([[${star.ticker}]] , [[${star.name}]]);" >
+                                            <img id="checkStar" th:src="@{/img/addStar.png}">
+                                        </button>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

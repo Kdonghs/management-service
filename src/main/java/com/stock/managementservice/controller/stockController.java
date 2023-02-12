@@ -72,7 +72,7 @@ public class stockController {
         Member member = customOAuth2Service.authenticationMember(authentication);
         model.addAttribute("member",member);
         model.addAttribute("stars", myStars.getAll());
-        return "/stock/stars";
+        return "/stock/starsTable";
     }
    /* @RequestMapping("/search.do")
     public String searchStockRe(@RequestParam String search,@RequestParam String state,
